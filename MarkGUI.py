@@ -90,12 +90,13 @@ while True:
         openWindow()
         window["marks"].Update(value=marks) #Вписывание оценок в верхнюю строку
 
-        marksSum = 0 #Сумма оценок
-        for i in marks: #Высчитывает сумму всех оценок
-            marksSum += int(i)
+        if marks:
+            marksSum = 0 #Сумма оценок
+            for i in marks: #Высчитывает сумму всех оценок
+                marksSum += int(i)
 
-        coefficient = marksSum / len(marks) #Считает коэффициент
-        window["coefficient"].Update(range=(commaSlice(coefficient, 1) + 0.1, 4.9)) #Обновление радиуса слайдера с желаемым коэффициентом на текущий коэффициент + 0.1
+            coefficient = marksSum / len(marks) #Считает коэффициент
+            window["coefficient"].Update(range=(commaSlice(coefficient, 1) + 0.1, 4.9)) #Обновление радиуса слайдера с желаемым коэффициентом на текущий коэффициент + 0.1
 
     if event == "coefficient":
         if values["coefficient"] >= 3.0 and values["coefficient"] < 4.0: #Если коэффициент больше или равен 3 и меньше 4
